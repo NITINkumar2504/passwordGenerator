@@ -18,15 +18,15 @@ function App() {
     if(charAlllowed) str+="!@#$%^&*(){}[]-_+=~"
 
     for(let i = 1; i<=length; i++){
-      let char = Math.floor(Math.random() * str.length + 1)
+      let char = Math.floor(Math.random() * str.length)
       pass += str.charAt(char) 
     }
     setPassword(pass)
   },[length,numberAlllowed,charAlllowed,setPassword])
 
   const copyPasswordToClipboard = useCallback(() =>{
-    passwordRef.current?.select()
-    passwordRef.current?.setSelectionRange(0,20)
+    passwordRef.current?.select()    // highlight selected text
+    // passwordRef.current?.setSelectionRange(0,20)
     window.navigator.clipboard.writeText(password)
   },[password])
 
@@ -54,7 +54,7 @@ function App() {
           <input 
           type="range"
           min={8}
-          max={100}
+          max={50}
           value={length}
           className='cursor-pointer' 
           onChange={(e)=>{
